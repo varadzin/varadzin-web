@@ -1,0 +1,19 @@
+; Backup of the varadzin.com DNS zone at Webglobe/Onebit, taken 2026-10-06 before switching the web to GitHub Pages.
+@ 3600 IN A 62.109.154.80
+@ 3600 IN AAAA 2001:1ab0:7e1e:151:62:109:154:80
+@ 3600 IN MX 0 mx11.onebit.cz.
+@ 3600 IN MX 10 mx11.onebit.eu.
+@ 3600 IN NS ns.onebit.cz.
+@ 3600 IN NS ns.onebit.eu.
+@ 3600 IN NS ns.onebit.org.
+* 3600 IN A 62.109.154.80
+* 3600 IN AAAA 2001:1ab0:7e1e:151:62:109:154:80
+autoconfig 3600 IN CNAME autodiscover.webglobe.cz.
+autodiscover 3600 IN CNAME autodiscover.webglobe.cz.
+awstats 3600 IN A 178.238.37.200
+awstats 3600 IN AAAA 2a01:430:13:0:0:0:0:200
+default._domainkey 3600 IN TXT "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnkaKs8CKKSVwA25+GQrWJPgUHI256FzB+yWPiPWHZyjjLrW08yQczhkZ6DdLgf1n+oSpba1mI4Yw7wa2obEsd6eKzX2ESDAr06KZ+A/Bg0GjgkTozQJaZu4GVl7sWHR1u1VhRTS5JajeyFMG5yFASwtK1y84Hc0Jl0Ri/cyre5wIDAQAB"
+mail 3600 IN A 62.109.154.22
+ob101502._domainkey 3600 IN TXT (onebit DKIM key, see Webglobe admin)
+smtp 3600 IN CNAME smtp11.onebit.cz.
+_dmarc 300 IN TXT "v=DMARC1; p=none;"
