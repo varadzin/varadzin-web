@@ -1,6 +1,6 @@
 // MARK: - Contact
 
-export const contactEmail = 'email@varadzin.com';
+export const contactEmail = 'info@varadzin.com';
 
 // MARK: - Apps on the homepage
 
