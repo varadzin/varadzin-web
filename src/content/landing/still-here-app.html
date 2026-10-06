@@ -1,0 +1,613 @@
+<div id="stillhere-landing" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; color: #2d2d2d; line-height: 1.6; max-width: 1200px; margin: 0 auto;">
+<style>
+  #stillhere-landing * { box-sizing: border-box; margin: 0; padding: 0; }
+  #stillhere-landing a { text-decoration: none; color: inherit; }
+  /* Full-width breakout for colored sections */
+  #stillhere-landing .sh-full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  #stillhere-landing .sh-hero {
+    background: linear-gradient(135deg, #7b2d8e 0%, #9b59b6 30%, #c39bd3 60%, #e8d5f0 100%);
+    padding: 80px 20px 60px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  #stillhere-landing .sh-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  #stillhere-landing .sh-hero h1 {
+    font-size: 3.2em;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+    position: relative;
+  }
+  #stillhere-landing .sh-hero .sh-tagline {
+    font-size: 1.3em;
+    opacity: 0.92;
+    margin-bottom: 30px;
+    font-weight: 300;
+  }
+  #stillhere-landing .sh-hero .sh-subtitle {
+    font-size: 1.05em;
+    opacity: 0.85;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  #stillhere-landing .sh-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    padding: 12px 32px;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: default;
+  }
+  #stillhere-landing .sh-section {
+    padding: 70px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  #stillhere-landing .sh-section-title {
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #3d1f56;
+  }
+  #stillhere-landing .sh-section-desc {
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    max-width: 650px;
+    margin: 0 auto 50px;
+  }
+  #stillhere-landing .sh-problem {
+    background: linear-gradient(180deg, #faf6fd 0%, #fff 100%);
+    padding: 70px 20px;
+  }
+  #stillhere-landing .sh-problem-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  #stillhere-landing .sh-problem-inner h2 {
+    font-size: 2em;
+    color: #3d1f56;
+    margin-bottom: 20px;
+  }
+  #stillhere-landing .sh-problem-inner p {
+    font-size: 1.15em;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 15px;
+  }
+  #stillhere-landing .sh-problem-inner .sh-highlight {
+    color: #7b2d8e;
+    font-weight: 600;
+  }
+  #stillhere-landing .sh-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  #stillhere-landing .sh-feature-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 36px 30px;
+    box-shadow: 0 4px 24px rgba(123,45,142,0.08);
+    border: 1px solid #f0e6f6;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  #stillhere-landing .sh-feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(123,45,142,0.14);
+  }
+  #stillhere-landing .sh-feature-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 18px;
+  }
+  #stillhere-landing .sh-feature-card h3 {
+    font-size: 1.25em;
+    margin-bottom: 10px;
+    color: #3d1f56;
+  }
+  #stillhere-landing .sh-feature-card p {
+    color: #666;
+    font-size: 0.95em;
+    line-height: 1.65;
+  }
+  #stillhere-landing .sh-how-it-works {
+    background: linear-gradient(180deg, #fff 0%, #faf6fd 100%);
+    padding: 70px 20px;
+  }
+  #stillhere-landing .sh-steps {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+    text-align: center;
+  }
+  #stillhere-landing .sh-step {
+    position: relative;
+  }
+  #stillhere-landing .sh-step-number {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7b2d8e, #9b59b6);
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  #stillhere-landing .sh-step h3 {
+    font-size: 1.15em;
+    color: #3d1f56;
+    margin-bottom: 8px;
+  }
+  #stillhere-landing .sh-step p {
+    color: #666;
+    font-size: 0.95em;
+    line-height: 1.6;
+  }
+  #stillhere-landing .sh-dual-view {
+    padding: 70px 20px;
+    background: #fff;
+  }
+  #stillhere-landing .sh-dual-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  #stillhere-landing .sh-dual-card {
+    border-radius: 24px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  #stillhere-landing .sh-dual-card.sh-senior {
+    background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+    border: 2px solid #e8d0f0;
+  }
+  #stillhere-landing .sh-dual-card.sh-family {
+    background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+    border: 2px solid #d5d0f0;
+  }
+  #stillhere-landing .sh-dual-card .sh-dual-emoji {
+    font-size: 3em;
+    margin-bottom: 16px;
+    display: block;
+  }
+  #stillhere-landing .sh-dual-card h3 {
+    font-size: 1.4em;
+    color: #3d1f56;
+    margin-bottom: 16px;
+  }
+  #stillhere-landing .sh-dual-card ul {
+    list-style: none;
+    text-align: left;
+    padding: 0;
+  }
+  #stillhere-landing .sh-dual-card ul li {
+    padding: 8px 0;
+    color: #555;
+    font-size: 0.95em;
+    border-bottom: 1px solid rgba(123,45,142,0.08);
+    padding-left: 28px;
+    position: relative;
+  }
+  #stillhere-landing .sh-dual-card ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #7b2d8e;
+    font-weight: 700;
+  }
+  #stillhere-landing .sh-testimonial-section {
+    background: linear-gradient(135deg, #7b2d8e 0%, #9b59b6 50%, #c39bd3 100%);
+    padding: 70px 20px;
+    text-align: center;
+    color: #fff;
+  }
+  #stillhere-landing .sh-testimonial-section h2 {
+    font-size: 2em;
+    margin-bottom: 40px;
+  }
+  #stillhere-landing .sh-testimonials {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  #stillhere-landing .sh-testimonial {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: left;
+  }
+  #stillhere-landing .sh-testimonial .sh-stars {
+    color: #ffd700;
+    font-size: 1.1em;
+    margin-bottom: 12px;
+  }
+  #stillhere-landing .sh-testimonial p {
+    font-size: 0.95em;
+    line-height: 1.65;
+    opacity: 0.95;
+    margin-bottom: 14px;
+  }
+  #stillhere-landing .sh-testimonial .sh-author {
+    font-weight: 600;
+    font-size: 0.9em;
+    opacity: 0.8;
+  }
+  #stillhere-landing .sh-privacy {
+    background: #faf6fd;
+    padding: 50px 20px;
+    text-align: center;
+  }
+  #stillhere-landing .sh-privacy-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  #stillhere-landing .sh-privacy-badges {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  #stillhere-landing .sh-priv-badge {
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px 24px;
+    font-size: 0.92em;
+    color: #555;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    border: 1px solid #ede3f5;
+  }
+  #stillhere-landing .sh-cta-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: #fff;
+  }
+  #stillhere-landing .sh-cta-section h2 {
+    font-size: 2.4em;
+    color: #3d1f56;
+    margin-bottom: 16px;
+  }
+  #stillhere-landing .sh-cta-section p {
+    font-size: 1.1em;
+    color: #666;
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+  #stillhere-landing .sh-cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #7b2d8e, #9b59b6);
+    color: #fff;
+    padding: 18px 48px;
+    border-radius: 50px;
+    font-size: 1.15em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+  }
+  #stillhere-landing .sh-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(123,45,142,0.3);
+  }
+  #stillhere-landing .sh-cta-soon {
+    margin-top: 14px;
+    font-size: 0.9em;
+    color: #999;
+  }
+  #stillhere-landing .sh-footer {
+    background: #2d1540;
+    color: rgba(255,255,255,0.7);
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 0.9em;
+  }
+  #stillhere-landing .sh-footer-brand {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  /* Phone mockups showcase */
+  #stillhere-landing .sh-phones {
+    padding: 60px 20px 70px;
+    text-align: center;
+    background: linear-gradient(180deg, #e8d5f0 0%, #faf6fd 8%, #fff 100%);
+  }
+  #stillhere-landing .sh-phones-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  #stillhere-landing .sh-phone {
+    background: #1a1a2e;
+    border-radius: 36px;
+    padding: 12px;
+    box-shadow: 0 20px 60px rgba(123,45,142,0.18), 0 4px 16px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+  #stillhere-landing .sh-phone:hover {
+    transform: translateY(-8px);
+  }
+  #stillhere-landing .sh-phone.sh-phone-center {
+    transform: scale(1.08);
+    z-index: 2;
+  }
+  #stillhere-landing .sh-phone.sh-phone-center:hover {
+    transform: scale(1.08) translateY(-8px);
+  }
+  #stillhere-landing .sh-phone-screen {
+    border-radius: 26px;
+    overflow: hidden;
+    width: 220px;
+    height: 476px;
+    background: #fff;
+  }
+  #stillhere-landing .sh-phone-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #stillhere-landing .sh-phone-label {
+    margin-top: 16px;
+    font-size: 0.85em;
+    color: #888;
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    #stillhere-landing .sh-hero h1 { font-size: 2.2em; }
+    #stillhere-landing .sh-hero .sh-tagline { font-size: 1.1em; }
+    #stillhere-landing .sh-section-title { font-size: 1.7em; }
+    #stillhere-landing .sh-dual-grid { grid-template-columns: 1fr; }
+    #stillhere-landing .sh-features-grid { grid-template-columns: 1fr; }
+    #stillhere-landing .sh-cta-section h2 { font-size: 1.8em; }
+    #stillhere-landing .sh-phones-grid { gap: 20px; }
+    #stillhere-landing .sh-phone { border-radius: 28px; padding: 8px; }
+    #stillhere-landing .sh-phone-screen { width: 160px; height: 347px; border-radius: 20px; }
+    #stillhere-landing .sh-phone.sh-phone-center { transform: scale(1.05); }
+    #stillhere-landing .sh-phone.sh-phone-center:hover { transform: scale(1.05) translateY(-8px); }
+  }
+  @media (max-width: 540px) {
+    #stillhere-landing .sh-phones-grid { flex-direction: column; align-items: center; gap: 24px; }
+    #stillhere-landing .sh-phone-screen { width: 200px; height: 433px; }
+    #stillhere-landing .sh-phone.sh-phone-center { transform: scale(1); }
+    #stillhere-landing .sh-phone.sh-phone-center:hover { transform: translateY(-8px); }
+  }
+</style>
+<p><!-- HERO --></p>
+<div class="sh-hero sh-full-width">
+<center></p>
+<h1>Still Here</h1>
+<div class="sh-tagline">You&#8217;re not alone.</div>
+<p></center></p>
+<p class="sh-subtitle">A simple and secure way to let your loved ones know you&#8217;re okay &mdash; every single day. Designed for seniors and the families who care about them.</p>
+</div>
+<p> <center><br />
+<a href="https://apps.apple.com/sk/app/still-here-for-you/id6759660505" target="_blank" class="sh-cta-btn">Download on the App Store</a></p>
+<p></center><br />
+<br />
+<!-- APP SCREENSHOTS --></p>
+<div class="sh-phones sh-full-width">
+<div class="sh-phones-grid">
+<div class="sh-phone">
+<div class="sh-phone-screen">
+        <!-- NAHRAD URL: vloz URL prveho screenshotu z WordPress Media Library --><br />
+      <img src="/wp-content/uploads/2026/02/2-view-scaled.png" alt="Still Here - Welcome Screen">
+      </div>
+</p></div>
+<div class="sh-phone sh-phone-center">
+<div class="sh-phone-screen">
+        <!-- NAHRAD URL: vloz URL druheho screenshotu z WordPress Media Library --><br />
+        <img src="/wp-content/uploads/2026/02/1-View-scaled-e1772038769256.png" alt="Still Here - Family Dashboard"></p></div>
+</p></div>
+<div class="sh-phone">
+<div class="sh-phone-screen">
+        <!-- NAHRAD URL: vloz URL tretieho screenshotu z WordPress Media Library --><br />
+        <img src="/wp-content/uploads/2026/02/3-view-scaled.png" alt="Still Here - Senior View">
+      </div>
+</p></div>
+</p></div>
+</div>
+<p><!-- PROBLEM --></p>
+<div class="sh-problem sh-full-width">
+<div class="sh-problem-inner">
+<h2>Peace of Mind for the Whole Family</h2>
+<p>When your elderly parent or grandparent lives alone, a single question runs through your mind every day: <span class="sh-highlight">&#8220;Are they okay?&#8221;</span></p>
+<p>Phone calls go unanswered. You worry. They forget to charge the phone. You worry more. A missed call turns into panic.</p>
+<p><span class="sh-highlight">Still Here</span> solves this with a beautifully simple daily check-in that takes seconds &mdash; giving you peace of mind and keeping your loved one connected.</p>
+</p></div>
+</div>
+<p><!-- FEATURES --></p>
+<div class="sh-section">
+<h2 class="sh-section-title">Everything Your Family Needs</h2>
+<p class="sh-section-desc">Powerful features wrapped in the simplest interface possible. Built for seniors who aren&#8217;t tech-savvy and families who want to stay close.</p>
+<div class="sh-features-grid">
+<div class="sh-feature-card">
+<div class="sh-feature-icon" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">&#9989;</div>
+<h3>One-Tap Daily Check-In</h3>
+<p>Your loved one simply opens the app and you instantly know they&#8217;re safe. No complicated buttons, no typing required. Just open &mdash; done.</p>
+</p></div>
+<div class="sh-feature-card">
+<div class="sh-feature-icon" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);">&#128248;</div>
+<h3>Photo Sharing</h3>
+<p>Send photos from your camera or gallery directly to your senior family member. Add a caption like &#8220;Lake and sun&#8221; and brighten their whole day with a single tap.</p>
+</p></div>
+<div class="sh-feature-card">
+<div class="sh-feature-icon" style="background: linear-gradient(135deg, #ffebee, #ef9a9a);">&#128680;</div>
+<h3>Emergency Call Button</h3>
+<p>A large, clearly visible red emergency button is always accessible on the senior&#8217;s screen. One tap to call a pre-set emergency contact &mdash; no scrolling, no searching.</p>
+</p></div>
+<div class="sh-feature-card">
+<div class="sh-feature-icon" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb);">&#128222;</div>
+<h3>Easy Calling &amp; FaceTime</h3>
+<p>Call your loved one directly from the app with a single tap. Supports phone calls and FaceTime so you can see each other face to face, no setup needed.</p>
+</p></div>
+<div class="sh-feature-card">
+<div class="sh-feature-icon" style="background: linear-gradient(135deg, #f3e5f5, #ce93d8);">&#128116;</div>
+<h3>Senior-Friendly Design</h3>
+<p>Extra-large text, big colorful buttons, and a clutter-free interface. Your grandma doesn&#8217;t need to be tech-savvy &mdash; if she can tap a screen, she can use Still Here.</p>
+</p></div>
+<div class="sh-feature-card">
+<div class="sh-feature-icon" style="background: linear-gradient(135deg, #fff8e1, #ffe082);">&#9200;</div>
+<h3>Check-In Status &amp; Timestamps</h3>
+<p>See exactly when your loved one last checked in and when they viewed your photos. Know at a glance that everything is fine &mdash; or get alerted when it&#8217;s not.</p>
+</p></div>
+<div class="sh-feature-card">
+<div class="sh-feature-icon" style="background: linear-gradient(135deg, #e0f7fa, #80deea);">&#128101;</div>
+<h3>Multiple Family Contacts</h3>
+<p>Add several family members as contacts and emergency numbers. The whole family stays in the loop &mdash; share the responsibility and the connection.</p>
+</p></div>
+<div class="sh-feature-card">
+<div class="sh-feature-icon" style="background: linear-gradient(135deg, #fce4ec, #f48fb1);">&#127775;</div>
+<h3>Personalized Greeting</h3>
+<p>The app greets your loved one by name with a warm &#8220;Good Morning, Grandma!&#8221; along with today&#8217;s date. A small touch that makes all the difference.</p>
+</p></div>
+</p></div>
+</div>
+<p><!-- HOW IT WORKS --></p>
+<div class="sh-how-it-works sh-full-width">
+<h2 class="sh-section-title">How It Works</h2>
+<p class="sh-section-desc">Set up in minutes, use every day with zero effort.</p>
+<div class="sh-steps">
+<div class="sh-step">
+<div class="sh-step-number">1</div>
+<h3>Download &amp; Set Up</h3>
+<p>Install the app, add your senior&#8217;s profile, photo, and emergency contacts. Import contacts directly from your phone.</p>
+</p></div>
+<div class="sh-step">
+<div class="sh-step-number">2</div>
+<h3>Give It to Your Loved One</h3>
+<p>Hand the phone to Grandma. The senior view is ultra-simple &mdash; a greeting, a contact to call, photos from family, and an emergency button.</p>
+</p></div>
+<div class="sh-step">
+<div class="sh-step-number">3</div>
+<h3>Stay Connected Daily</h3>
+<p>Every time they open the app, you get a check-in. Send them photos, call them, and know they&#8217;re safe &mdash; every single day.</p>
+</p></div>
+</p></div>
+</div>
+<p><!-- DUAL VIEW --></p>
+<div class="sh-dual-view sh-full-width">
+<h2 class="sh-section-title" style="max-width: 1000px; margin: 0 auto 12px;">Two Views, One App</h2>
+<p class="sh-section-desc">Still Here adapts to who&#8217;s using it &mdash; a powerful dashboard for family, and a beautifully simple screen for seniors.</p>
+<div class="sh-dual-grid">
+<div class="sh-dual-card sh-senior">
+      <span class="sh-dual-emoji">&#128116;&#127997;</span></p>
+<h3>Senior View</h3>
+<ul>
+<li>Warm personalized greeting with date</li>
+<li>Family contact with one-tap calling</li>
+<li>Photos from family displayed beautifully</li>
+<li>Large red Emergency Call button</li>
+<li>No menus, no settings, no confusion</li>
+</ul></div>
+<div class="sh-dual-card sh-family">
+      <span class="sh-dual-emoji">&#128106;</span></p>
+<h3>Family View</h3>
+<ul>
+<li>Real-time check-in status and timestamps</li>
+<li>Send photos with captions instantly</li>
+<li>Call or FaceTime with one tap</li>
+<li>Manage contacts and emergency numbers</li>
+<li>Full control over senior settings</li>
+</ul></div>
+</p></div>
+</div>
+<p><!-- TESTIMONIALS --></p>
+<div class="sh-testimonial-section sh-full-width">
+<h2>Families Love Still Here</h2>
+<div class="sh-testimonials">
+<div class="sh-testimonial">
+<div class="sh-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p>&#8220;I used to call my mom three times a day just to check if she&#8217;s okay. Now I open the app and see she checked in at 9 AM. The relief is incredible.&#8221;</p>
+<div class="sh-author">&mdash; Sarah, 42</div>
+</p></div>
+<div class="sh-testimonial">
+<div class="sh-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p>&#8220;My grandma is 87 and can barely use a phone. But she loves Still Here because all she has to do is open it. She looks at our photos every day!&#8221;</p>
+<div class="sh-author">&mdash; Mark, 29</div>
+</p></div>
+<div class="sh-testimonial">
+<div class="sh-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p>&#8220;The emergency button alone is worth it. Dad had a fall and pressed it immediately. We got there in minutes. This app saves lives.&#8221;</p>
+<div class="sh-author">&mdash; Julia, 38</div>
+</p></div>
+</p></div>
+</div>
+<p><!-- PRIVACY --></p>
+<div class="sh-privacy sh-full-width">
+<div class="sh-privacy-inner">
+<h2 class="sh-section-title">Built with Privacy First</h2>
+<p style="color: #666; margin-top: 12px;">Your family&#8217;s data stays your family&#8217;s data. No ads, no tracking, no selling of personal information. Ever.</p>
+<div class="sh-privacy-badges">
+<div class="sh-priv-badge">&#128274; End-to-End Secure</div>
+<div class="sh-priv-badge">&#128581; No Ads</div>
+<div class="sh-priv-badge">&#128373;&#65039; No Data Selling</div>
+<div class="sh-priv-badge">&#127466;&#127482; Made in Europe</div>
+</p></div>
+</p></div>
+</div>
+<p><!-- CTA --></p>
+<div class="sh-cta-section sh-full-width">
+<center></p>
+<h2>Keep Your Loved Ones Close</h2>
+<p></center></p>
+<p>Still Here is the simplest way to know your family is safe. Download it and set it up in minutes.</p>
+<p>  <center><br />
+<a href="https://apps.apple.com/sk/app/still-here-for-you/id6759660505" target="_blank" class="sh-cta-btn">Download on the App Store</a><br />
+</center>
+</div>
+<p><!-- FOOTER --></p>
+<div class="sh-footer sh-full-width">
+<div class="sh-footer-brand">Still Here</div>
+<p>You&#8217;re not alone.</p>
+<p style="margin-top: 16px; font-size: 0.85em; opacity: 0.6;">&copy; 2026 Still Here App. All rights reserved.</p>
+</div>
+</div>

@@ -1,0 +1,51 @@
+---
+import Head from './Head.astro';
+import { contactEmail, legalPages } from '../data/site';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head title={title} description={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
+    />
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap">
+        <a class="mark" href="/">varadzin<span>.</span></a>
+        <nav aria-label="Main">
+          <a href="/#apps">Apps</a>
+          <a href="/#references">References</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>© {year} František Varadzin · <a href={`mailto:${contactEmail}`}>{contactEmail}</a></span>
+        <nav aria-label="Legal">
+          {legalPages.filter((page) => page.footerLabel).map((page) => <a href={`/${page.slug}/`}>{page.footerLabel}</a>)}
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { legalPages, type LegalPage } from '../data/site';
+
+// Policy and terms texts, migrated from WordPress as plain HTML.
+const bodies = import.meta.glob<string>('../content/legal/*.html', { query: '?raw', import: 'default', eager: true });
+
+export function getStaticPaths() {
+  return legalPages.map((page) => ({ params: { legal: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props as { page: LegalPage };
+const body = bodies[`../content/legal/${page.slug}.html`];
+if (body === undefined) {
+  throw new Error(`Missing src/content/legal/${page.slug}.html`);
+}
+// Some policies carry their own <h1>; only add one when they do not.
+const hasOwnHeading = /<h1[\s>]/.test(body);
+---
+
+<SiteLayout title={page.title} description={page.description}>
+  <article class="wrap legal">
+    {!hasOwnHeading && <h1>{page.title}</h1>}
+    <Fragment set:html={body} />
+  </article>
+</SiteLayout>

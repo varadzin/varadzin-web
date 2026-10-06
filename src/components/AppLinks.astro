@@ -1,0 +1,13 @@
+---
+import type { AppLink } from '../data/site';
+
+interface Props {
+  links: AppLink[];
+}
+
+const { links } = Astro.props;
+---
+
+<div class="links">
+  {links.map((link) => <a href={link.href}>{link.label}</a>)}
+</div>

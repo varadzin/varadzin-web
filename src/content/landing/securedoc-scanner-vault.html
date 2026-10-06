@@ -1,0 +1,568 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  /* Twenty Nineteen full-width override */
+  html, body, body.page, body.page-template {
+    background: #0a0f1a !important;
+  }
+  #page, .site {
+    max-width: 100% !important;
+    width: 100% !important;
+    background: #0a0f1a !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .site-header, .entry-header, .site-branding-container {
+    display: none !important;
+  }
+  .site-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .entry .entry-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .entry .entry-content > * {
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  section#primary, #primary, #main, main, .site-main {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .site-footer {
+    display: none !important;
+  }
+</style>
+<style>
+  /* Reset & scope everything under .sd-landing */
+  .sd-landing * { margin: 0; padding: 0; box-sizing: border-box; }
+  .sd-landing {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #e8edf3;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background: #0a0f1a;
+  }
+
+  /* Typography */
+
+  .sd-landing h1, .sd-landing h2, .sd-landing h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .sd-landing p, .sd-landing a, .sd-landing span {
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Hero Section */
+  .sd-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    background: radial-gradient(ellipse at 30% 20%, rgba(30, 80, 160, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(20, 100, 140, 0.2) 0%, transparent 50%),
+                linear-gradient(170deg, #0a0f1a 0%, #0d1a2d 40%, #0a1628 100%);
+    overflow: hidden;
+  }
+  .sd-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 100px,
+      rgba(255,255,255,0.005) 100px,
+      rgba(255,255,255,0.005) 101px
+    );
+    animation: sd-drift 60s linear infinite;
+  }
+  @keyframes sd-drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(100px, 100px); }
+  }
+
+  .sd-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .sd-hero-text { max-width: 540px; }
+
+  .sd-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(46, 134, 222, 0.15);
+    border: 1px solid rgba(46, 134, 222, 0.3);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #5dade2;
+    margin-bottom: 28px;
+    letter-spacing: 0.03em;
+  }
+  .sd-badge::before {
+    content: '🔒';
+    font-size: 14px;
+  }
+
+  .sd-hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  .sd-hero h1 .sd-highlight {
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sd-hero-desc {
+    font-size: 18px;
+    color: #94a3b8;
+    margin-bottom: 36px;
+    max-width: 460px;
+    line-height: 1.7;
+  }
+
+  .sd-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .sd-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: #ffffff;
+    color: #0a0f1a;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 24px rgba(52, 152, 219, 0.2);
+  }
+  .sd-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(52, 152, 219, 0.35);
+    color: #0a0f1a;
+    text-decoration: none;
+  }
+  .sd-cta-btn svg { width: 22px; height: 22px; }
+
+  .sd-cta-sub {
+    font-size: 13px;
+    color: #64748b;
+  }
+  .sd-cta-sub strong { color: #94a3b8; }
+
+  /* Phone mockup */
+  .sd-phone-wrap {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  .sd-phone {
+    position: relative;
+    width: 280px;
+    height: 580px;
+    background: #1a1a2e;
+    border-radius: 40px;
+    border: 3px solid #2a2a40;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 120px rgba(52, 152, 219, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sd-phone::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 24px;
+    background: #0a0f1a;
+    border-radius: 20px;
+    z-index: 10;
+  }
+  .sd-phone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 37px;
+  }
+  /* Placeholder if no image uploaded yet */
+  .sd-phone-placeholder {
+    text-align: center;
+    padding: 40px 20px;
+    color: #475569;
+    font-size: 14px;
+  }
+  .sd-phone-placeholder .sd-shield {
+    font-size: 64px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .sd-glow-orb {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(52, 152, 219, 0.15) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: sd-pulse 4s ease-in-out infinite;
+    z-index: 0;
+  }
+  @keyframes sd-pulse {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+  }
+
+  /* Features Section */
+  .sd-features {
+    padding: 100px 24px;
+    background: linear-gradient(180deg, #0a1628 0%, #0d1f35 50%, #0a1628 100%);
+  }
+  .sd-features-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .sd-section-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3498db;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+  }
+  .sd-features h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    color: #ffffff;
+    margin-bottom: 60px;
+    max-width: 500px;
+  }
+
+  .sd-features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .sd-feature-card {
+    padding: 36px 28px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    transition: all 0.4s ease;
+  }
+  .sd-feature-card:hover {
+    border-color: rgba(52, 152, 219, 0.3);
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.08) 0%, rgba(255,255,255,0.02) 100%);
+    transform: translateY(-4px);
+  }
+
+  .sd-feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .sd-fi-blue { background: rgba(52, 152, 219, 0.15); }
+  .sd-fi-green { background: rgba(46, 204, 113, 0.15); }
+  .sd-fi-purple { background: rgba(155, 89, 182, 0.15); }
+  .sd-fi-orange { background: rgba(243, 156, 18, 0.15); }
+  .sd-fi-red { background: rgba(231, 76, 60, 0.15); }
+  .sd-fi-teal { background: rgba(26, 188, 156, 0.15); }
+
+  .sd-feature-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  .sd-feature-card p {
+    font-size: 14.5px;
+    color: #7c8db0;
+    line-height: 1.65;
+  }
+
+  /* Privacy Banner */
+  .sd-privacy-banner {
+    padding: 80px 24px;
+    background: #0a0f1a;
+  }
+  .sd-privacy-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 60px 48px;
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.06) 0%, rgba(52, 152, 219, 0.06) 100%);
+    border: 1px solid rgba(46, 204, 113, 0.15);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sd-privacy-inner::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46, 204, 113, 0.08) 0%, transparent 70%);
+  }
+
+  .sd-privacy-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .sd-privacy-banner h2 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    color: #ffffff;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .sd-privacy-banner p {
+    font-size: 16px;
+    color: #7c8db0;
+    max-width: 560px;
+    margin: 0 auto 32px;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .sd-privacy-points {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .sd-privacy-point {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+  .sd-privacy-point .sd-check {
+    color: #2ecc71;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  /* CTA Bottom */
+  .sd-cta-bottom {
+    padding: 80px 24px 100px;
+    background: linear-gradient(180deg, #0a0f1a 0%, #0d1a2d 100%);
+    text-align: center;
+  }
+  .sd-cta-bottom h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+  .sd-cta-bottom p {
+    font-size: 16px;
+    color: #7c8db0;
+    margin-bottom: 36px;
+  }
+  .sd-cta-bottom .sd-cta-btn {
+    font-size: 17px;
+    padding: 18px 40px;
+  }
+
+  /* Footer */
+  .sd-footer {
+    padding: 40px 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    background: #080c16;
+    text-align: center;
+  }
+  .sd-footer p {
+    font-size: 13px;
+    color: #475569;
+  }
+  .sd-footer a {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .sd-footer a:hover { color: #94a3b8; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .sd-hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 40px;
+    }
+    .sd-hero-text { max-width: 100%; }
+    .sd-hero-desc { max-width: 100%; margin-left: auto; margin-right: auto; }
+    .sd-cta-row { justify-content: center; }
+    .sd-cta-sub { text-align: center; width: 100%; }
+    .sd-badge { margin-left: auto; margin-right: auto; }
+    .sd-features-grid { grid-template-columns: 1fr; }
+    .sd-phone { width: 240px; height: 500px; }
+    .sd-privacy-points { gap: 20px; }
+    .sd-privacy-inner { padding: 40px 24px; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .sd-features-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<div class="sd-landing">
+
+  <!-- ===== HERO ===== -->
+  <section class="sd-hero">
+    <div class="sd-hero-inner">
+      <div class="sd-hero-text">
+        <div class="sd-badge">On-Device by Default &middot; Your Choice</div>
+        <h1>Your documents deserve privacy, <span class="sd-highlight">on your terms.</span></h1>
+        <p class="sd-hero-desc">SecureDoc is a private document scanner with AI&#8209;powered OCR, smart summaries, and Face&nbsp;ID protection. Everything stays on your device by default &mdash; or sync across your devices through your own Apple&nbsp;iCloud. The choice is always yours.</p>
+        <div class="sd-cta-row">
+          <a href="https://apps.apple.com/us/app/securedoc-organizer-ai/id6748312274?platform=iphone&#038;ct=Website%20header%20CTA&#038;mt=8" class="sd-cta-btn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 21.99C7.78997 22.03 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg>
+            Download on App Store
+          </a>
+          <div class="sd-cta-sub"><strong>Free</strong> · iOS 17+ · No account needed</div>
+        </div>
+      </div>
+      <div class="sd-phone-wrap">
+        <div class="sd-glow-orb"></div>
+        <div class="sd-phone">
+      <img src="/wp-content/uploads/2026/02/appScreen.png" alt="SecureDoc app screenshot">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="sd-features">
+    <div class="sd-features-inner">
+      <div class="sd-section-label">Features</div>
+      <h2>Everything you need. On your terms.</h2>
+      <div class="sd-features-grid">
+
+        <div class="sd-feature-card">
+          <div class="sd-feature-icon sd-fi-blue">📷</div>
+          <h3>Smart Document Scanner</h3>
+          <p>Auto-detect edges, correct perspective, and digitize any document in seconds. Powered by Apple VisionKit.</p>
+        </div>
+
+        <div class="sd-feature-card">
+          <div class="sd-feature-icon sd-fi-green">🔒</div>
+          <h3>Face ID &amp; Touch ID Vault</h3>
+          <p>Your documents are locked behind biometric authentication. No one gets in without your face or fingerprint.</p>
+        </div>
+
+        <div class="sd-feature-card">
+          <div class="sd-feature-icon sd-fi-purple">🤖</div>
+          <h3>AI-Powered OCR</h3>
+          <p>Extract text from any scan instantly. Full-text search across all your documents, completely offline.</p>
+        </div>
+
+        <div class="sd-feature-card">
+          <div class="sd-feature-icon sd-fi-orange">📝</div>
+          <h3>Auto Summary &amp; Language Detection</h3>
+          <p>On-device AI reads your documents and generates smart summaries. Detects the language automatically.</p>
+        </div>
+
+        <div class="sd-feature-card">
+          <div class="sd-feature-icon sd-fi-teal">🏷️</div>
+          <h3>Tags &amp; Categories</h3>
+          <p>Organize receipts, contracts, invoices, and IDs with custom tags. Find anything in seconds.</p>
+        </div>
+
+        <div class="sd-feature-card">
+          <div class="sd-feature-icon sd-fi-red">💾</div>
+          <h3>Flexible Backup &amp; Sync</h3>
+          <p>Back up your entire archive as a ZIP and export anywhere you want — or sync across your devices with your own Apple iCloud. Never a third-party server.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRIVACY BANNER ===== -->
+  <section class="sd-privacy-banner">
+    <div class="sd-privacy-inner">
+      <span class="sd-privacy-icon">🛡️</span>
+      <h2>Your data stays yours.</h2>
+      <p>Unlike CamScanner, Adobe Scan, or Genius Scan, SecureDoc processes everything on-device. No third-party servers. No accounts. No tracking. Want your documents on every device? Sync through your own Apple iCloud &mdash; never our servers.</p>
+      <div class="sd-privacy-points">
+        <span class="sd-privacy-point"><span class="sd-check">✓</span> No third-party servers</span>
+        <span class="sd-privacy-point"><span class="sd-check">✓</span> Optional iCloud sync</span>
+        <span class="sd-privacy-point"><span class="sd-check">✓</span> No account required</span>
+        <span class="sd-privacy-point"><span class="sd-check">✓</span> No tracking or analytics</span>
+        <span class="sd-privacy-point"><span class="sd-check">✓</span> GDPR compliant</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BOTTOM ===== -->
+  <section class="sd-cta-bottom">
+    <h2>Start scanning privately.</h2>
+    <p>Free to use. No account needed. Download now.</p>
+    <a href="https://apps.apple.com/us/app/securedoc-organizer-ai/id6748312274?platform=iphone&#038;ct=Website%20footer%20CTA&#038;mt=8" class="sd-cta-btn" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 21.99C7.78997 22.03 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg>
+      Download on App Store
+    </a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="sd-footer">
+    <p>SecureDoc &#8211; Scanner &#038; Vault · Made by <a href="/" target="_blank">Frantisek Varadzin</a> in Freiburg in Breisgau, Germany</p>
+    <p style="margin-top: 8px;">
+      <a href="/privacy-policy-for-securedoc/" style="margin-right: 16px;">Privacy Policy</a>
+      <a href="/terms-of-use-eula-for-securedoc/" style="margin-right: 16px;">Terms of Use</a>
+      <a href="https://apps.apple.com/us/app/securedoc-organizer-ai/id6748312274" target="_blank">App Store</a>
+    </p>
+  </footer>
+
+</div>
+
+<p></p>

@@ -1,0 +1,145 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import AppLinks from '../components/AppLinks.astro';
+import { contactEmail, contributedApps, ownApps } from '../data/site';
+---
+
+<SiteLayout
+  title="František Varadzin – iOS Developer"
+  description="iOS developer at Haufe Group building Lexware Office, and maker of SecureDoc, Still Here and Vitrio."
+>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">iOS Developer · Swift · SwiftUI</p>
+        <h1>František Varadzin</h1>
+        <p class="lede">
+          I build iPhone apps at <strong>Haufe Group</strong> for <strong>Lexware Office</strong>, “Die smarteste
+          Lösung für dein Business”. In my own time I build apps of my own.
+        </p>
+        <div class="cta">
+          <a class="btn solid" href="#apps">See my apps</a>
+          <a class="btn ghost" href={`mailto:${contactEmail}`}>Get in touch</a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <img
+          src="/images/portrait.jpg"
+          alt="František Varadzin, black and white portrait by lamplight"
+          width="871"
+          height="1024"
+        />
+        <figcaption><span class="dot" aria-hidden="true"></span>Currently building Lexware Office at Haufe Group</figcaption>
+      </figure>
+    </section>
+  </div>
+
+  <section class="block" id="apps">
+    <div class="wrap">
+      <div class="head">
+        <h2>Apps I built</h2>
+        <p>Designed, written and published by me, from the first sketch to the App Store listing.</p>
+      </div>
+      <div class="apps">
+        {
+          ownApps.map((app) => (
+            <article class="app">
+              <div class="app-top">
+                <img class="icon" src={app.icon} alt="" width="64" height="64" loading="lazy" />
+                <h3>{app.name}</h3>
+              </div>
+              <p>{app.summary}</p>
+              {app.chips && (
+                <ul class="chips">
+                  {app.chips.map((chip) => <li>{chip}</li>)}
+                </ul>
+              )}
+              <AppLinks links={app.links} />
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="sub">
+        <p class="sub-title">Projects I contributed to</p>
+        <div class="contrib">
+          {
+            contributedApps.map((app) => (
+              <div class="row">
+                <img class="icon" src={app.icon} alt="" width="52" height="52" loading="lazy" />
+                <div>
+                  <h3>{app.name}</h3>
+                  <p>{app.summary}</p>
+                </div>
+                <AppLinks links={app.links} />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="references">
+    <div class="wrap">
+      <div class="head"><h2>References</h2></div>
+      <div class="quotes">
+        <blockquote>
+          <p>
+            František has been working with me for over a year on several of my apps, including Itemlist and QRGenie.
+            He is detail-oriented, communicates clearly, and consistently delivers high-quality code. František can
+            take on complex tasks and new features with minimal input, handling everything from design details to code
+            architecture with great skill. It’s been a real pleasure having him on board.
+          </p>
+          <footer><a href="https://dabo.dev/">Damjan Dabo</a> · indie iOS developer</footer>
+        </blockquote>
+        <blockquote>
+          <p>
+            I had a great experience working with this iOS developer. The app was developed smoothly, communication was
+            clear, and everything worked as agreed. Post-launch updates were handled promptly, and all adjustments and
+            feedback were implemented quickly and professionally. I can definitely recommend this developer and would
+            be happy to work together again.
+          </p>
+          <footer>
+            <a href="https://cz.linkedin.com/in/tomas-krycinsky-b490581a">Tomáš Kryčinský</a> · Owner, Emotion-design.cz
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap contact">
+      <div>
+        <h2>Have an app in mind?</h2>
+        <div class="mail">
+          <a href={`mailto:${contactEmail}`} id="email">{contactEmail}</a>
+          <button class="copy" type="button" id="copy-email" data-email={contactEmail}>Copy</button>
+        </div>
+      </div>
+      <p class="note">New apps, features for an existing one, or a second pair of eyes on your Swift code.</p>
+    </div>
+  </section>
+</SiteLayout>
+
+<script>
+  const copyResetDelayMs = 1600;
+  const button = document.getElementById('copy-email');
+  const email = document.getElementById('email');
+
+  button?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(button.dataset.email ?? '');
+      button.textContent = 'Copied';
+      setTimeout(() => (button.textContent = 'Copy'), copyResetDelayMs);
+    } catch {
+      // Clipboard API refused: select the address so the visitor can copy it by hand.
+      if (!email) return;
+      const range = document.createRange();
+      range.selectNodeContents(email);
+      const selection = getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+    }
+  });
+</script>

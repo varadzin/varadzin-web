@@ -1,0 +1,829 @@
+<!--
+  Vitrio — WordPress landing section.
+
+  Paste the whole of this file into a single "Custom HTML" block.
+  There is deliberately no <html>, <head> or <body>: WordPress supplies
+  those. Every rule is scoped under .vitrio-lp so it cannot leak into the
+  theme, and the theme cannot leak in — each section sets its own colours,
+  so the page looks the same on a light or a dark theme. No external fonts,
+  images or scripts, so nothing to load and nothing to break.
+-->
+
+<div class="vitrio-lp">
+<style>
+/* ---- scope + reset ------------------------------------------------- */
+.vitrio-lp{
+  --vt-midnight:#0A1F44; --vt-ocean:#12358F; --vt-deep:#1E4FCF;
+  --vt-azure:#4C8BFF;    --vt-sky:#A6C6FF;   --vt-frost:#D6E4FF;
+  --vt-ice:#EDF3FF;      --vt-paper:#F8FAFF; --vt-crystal:#38DBFF;
+  --vt-ink-soft:#4A5F8A; --vt-ink-mute:#8296B9;
+  --vt-radius:22px; --vt-radius-sm:14px;
+  --vt-max:1140px;
+
+  box-sizing:border-box; width:100%; margin:0; padding:0;
+  color:var(--vt-midnight);
+  background:var(--vt-paper);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px; line-height:1.6; text-align:left;
+  -webkit-font-smoothing:antialiased;
+}
+.vitrio-lp *,.vitrio-lp *::before,.vitrio-lp *::after{box-sizing:border-box;}
+.vitrio-lp h1,.vitrio-lp h2,.vitrio-lp h3,.vitrio-lp h4,
+.vitrio-lp p,.vitrio-lp ul,.vitrio-lp ol,.vitrio-lp li,.vitrio-lp figure,.vitrio-lp table{
+  margin:0; padding:0; border:0; background:none; list-style:none;
+  font-family:inherit; color:inherit;
+}
+.vitrio-lp h1,.vitrio-lp h2,.vitrio-lp h3,.vitrio-lp h4{
+  font-weight:800; line-height:1.12; letter-spacing:-.02em;
+}
+.vitrio-lp strong{font-weight:700; color:inherit;}
+.vitrio-lp a{color:var(--vt-deep); text-decoration:none;}
+.vitrio-lp a:hover{text-decoration:underline;}
+.vitrio-lp svg{display:block; flex:none;}
+
+/* ---- host-theme armour ---------------------------------------------
+   The block is dropped inside whatever content column the theme gives
+   it, so two theme habits have to be undone. Themes cap the width of
+   every child of .entry-content (Twenty Nineteen caps at 50vw, which
+   left this at 574px), and several draw a decorative grey rule as
+   h1/h2::before. Both overrides stay scoped to .vitrio-lp, so the rest
+   of the site is untouched. The negative margins are the standard
+   full-bleed escape: 50% resolves against the theme column, 50vw
+   against the viewport, so the difference is exactly the gutter.
+   Both need !important — theme selectors like `.entry .entry-content > *`
+   carry two classes and would otherwise outrank this one.
+------------------------------------------------------------------- */
+.vitrio-lp{
+  max-width:none !important;
+  width:100vw;
+  margin-left:calc(50% - 50vw) !important;
+  margin-right:calc(50% - 50vw) !important;
+  overflow-x:clip;
+}
+.vitrio-lp h1::before,.vitrio-lp h2::before,.vitrio-lp h3::before,
+.vitrio-lp h4::before,.vitrio-lp h5::before,.vitrio-lp h6::before,
+.vitrio-lp h1::after,.vitrio-lp h2::after,.vitrio-lp h3::after,
+.vitrio-lp h4::after,.vitrio-lp h5::after,.vitrio-lp h6::after{
+  content:none !important; display:none !important;
+}
+
+.vitrio-lp__wrap{max-width:var(--vt-max); margin:0 auto; padding:0 24px;}
+.vitrio-lp__section{padding:88px 0;}
+.vitrio-lp__section--tint{background:var(--vt-ice);}
+.vitrio-lp__section--dark{background:var(--vt-midnight); color:#fff;}
+
+.vitrio-lp__eyebrow{
+  display:inline-block; font-size:12px; font-weight:800; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--vt-deep);
+  background:var(--vt-frost); border-radius:999px; padding:7px 14px; margin-bottom:20px;
+}
+.vitrio-lp__section--dark .vitrio-lp__eyebrow{
+  color:var(--vt-crystal); background:rgba(56,219,255,.14);
+}
+.vitrio-lp h2{font-size:clamp(30px,4.4vw,44px); margin-bottom:16px;}
+.vitrio-lp__lede{
+  font-size:clamp(17px,2vw,20px); color:var(--vt-ink-soft); max-width:62ch;
+}
+.vitrio-lp__section--dark .vitrio-lp__lede{color:var(--vt-sky);}
+
+/* ---- hero ---------------------------------------------------------- */
+.vitrio-lp__hero{
+  position:relative; overflow:hidden; color:#fff;
+  background:linear-gradient(135deg,#0A1F44 0%,#12358F 42%,#1E4FCF 78%,#4C8BFF 100%);
+  padding:96px 0 100px;
+}
+.vitrio-lp__hero::after{
+  content:""; position:absolute; inset:auto -12% -55% 45%;
+  height:78%; border-radius:50%;
+  background:radial-gradient(circle,rgba(56,219,255,.30) 0%,rgba(56,219,255,0) 68%);
+  pointer-events:none;
+}
+.vitrio-lp__hero-inner{position:relative; z-index:1; max-width:44ch;}
+.vitrio-lp__logo{
+  display:inline-flex; align-items:center; gap:12px; margin-bottom:32px;
+  font-size:20px; font-weight:800; letter-spacing:-.01em;
+}
+.vitrio-lp__logo-mark{
+  width:44px; height:44px; border-radius:13px;
+  background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.24);
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; font-weight:800; color:var(--vt-crystal);
+}
+.vitrio-lp__hero h1{font-size:clamp(38px,6.2vw,64px); margin-bottom:22px;}
+.vitrio-lp__hero h1 em{font-style:normal; color:var(--vt-crystal);}
+.vitrio-lp__hero p{font-size:clamp(17px,2.1vw,21px); color:var(--vt-frost);}
+.vitrio-lp__hero-meta{
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:34px;
+}
+.vitrio-lp__pill{
+  font-size:14px; font-weight:600; color:#fff;
+  background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.2);
+  border-radius:999px; padding:9px 16px;
+}
+
+/* ---- category strip ------------------------------------------------ */
+.vitrio-lp__cats{
+  display:grid; gap:14px; margin-top:44px;
+  grid-template-columns:repeat(auto-fit,minmax(272px,1fr));
+}
+.vitrio-lp__cat{
+  background:#fff; border:1px solid rgba(30,79,207,.10); border-radius:var(--vt-radius-sm);
+  padding:20px; display:flex; flex-direction:column; gap:12px;
+}
+.vitrio-lp__cat-icon{
+  width:42px; height:42px; border-radius:12px; display:flex;
+  align-items:center; justify-content:center; color:#fff;
+  background:linear-gradient(135deg,var(--vt-deep),var(--vt-azure));
+}
+.vitrio-lp__cat h4{font-size:16px;}
+.vitrio-lp__cat p{font-size:14px; color:var(--vt-ink-soft); line-height:1.45;}
+.vitrio-lp__cat--own{
+  background:linear-gradient(135deg,rgba(30,79,207,.05),rgba(76,139,255,.09));
+  border-style:dashed; border-color:rgba(30,79,207,.28);
+}
+
+/* ---- steps --------------------------------------------------------- */
+.vitrio-lp__steps{
+  display:grid; gap:18px; margin-top:44px;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  counter-reset:vtstep;
+}
+.vitrio-lp__step{
+  background:#fff; border:1px solid rgba(30,79,207,.10);
+  border-radius:var(--vt-radius); padding:26px;
+}
+.vitrio-lp__step::before{
+  counter-increment:vtstep; content:counter(vtstep);
+  display:flex; align-items:center; justify-content:center;
+  width:34px; height:34px; margin-bottom:16px;
+  border-radius:10px; background:var(--vt-frost);
+  color:var(--vt-deep); font-weight:800; font-size:15px;
+}
+.vitrio-lp__step h4{font-size:18px; margin-bottom:8px;}
+.vitrio-lp__step p{font-size:15px; color:var(--vt-ink-soft);}
+
+/* ---- source table -------------------------------------------------- */
+.vitrio-lp__table-wrap{
+  margin-top:36px; overflow-x:auto;
+  border:1px solid rgba(30,79,207,.12); border-radius:var(--vt-radius); background:#fff;
+}
+.vitrio-lp table{width:100%; border-collapse:collapse; min-width:600px; font-size:15px;}
+.vitrio-lp th,.vitrio-lp td{
+  padding:15px 18px; text-align:left; vertical-align:top;
+  border-bottom:1px solid rgba(30,79,207,.08);
+}
+.vitrio-lp th{
+  font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--vt-ink-soft); background:var(--vt-paper);
+}
+.vitrio-lp tr:last-child td{border-bottom:0;}
+.vitrio-lp td:first-child{font-weight:700; white-space:nowrap;}
+.vitrio-lp__tag{
+  display:inline-block; font-size:12px; font-weight:700; border-radius:999px;
+  padding:4px 10px; white-space:nowrap;
+}
+.vitrio-lp__tag--free{color:#0F6B3F; background:#DFF5E9;}
+.vitrio-lp__tag--key{color:#8A4B00; background:#FFEBCF;}
+.vitrio-lp__tag--manual{color:var(--vt-ink-soft); background:var(--vt-ice);}
+
+/* ---- feature grid -------------------------------------------------- */
+.vitrio-lp__grid{
+  display:grid; gap:18px; margin-top:44px;
+  grid-template-columns:repeat(auto-fit,minmax(275px,1fr));
+}
+.vitrio-lp__card{
+  background:#fff; border:1px solid rgba(30,79,207,.10);
+  border-radius:var(--vt-radius); padding:28px;
+}
+.vitrio-lp__section--dark .vitrio-lp__card{
+  background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.13);
+}
+.vitrio-lp__card-icon{
+  width:44px; height:44px; border-radius:12px; margin-bottom:18px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--vt-deep); background:var(--vt-frost);
+}
+.vitrio-lp__section--dark .vitrio-lp__card-icon{
+  color:var(--vt-crystal); background:rgba(56,219,255,.14);
+}
+.vitrio-lp__card h3{font-size:19px; margin-bottom:10px;}
+.vitrio-lp__card p{font-size:15px; color:var(--vt-ink-soft);}
+.vitrio-lp__section--dark .vitrio-lp__card p{color:var(--vt-sky);}
+.vitrio-lp__card ul{margin-top:14px; display:grid; gap:9px;}
+.vitrio-lp__card li{
+  position:relative; padding-left:24px; font-size:15px; color:var(--vt-ink-soft);
+}
+.vitrio-lp__card li::before{
+  content:""; position:absolute; left:0; top:.55em;
+  width:9px; height:9px; border-radius:50%;
+  background:var(--vt-azure);
+}
+.vitrio-lp__section--dark .vitrio-lp__card li{color:var(--vt-sky);}
+.vitrio-lp__section--dark .vitrio-lp__card li::before{background:var(--vt-crystal);}
+
+/* ---- pricing ------------------------------------------------------- */
+.vitrio-lp__plans{
+  display:grid; gap:20px; margin-top:44px;
+  grid-template-columns:1fr;
+}
+@media (min-width:780px){
+  /* Exactly two plans — `auto-fit` would leave a third, empty column. */
+  .vitrio-lp__plans{grid-template-columns:1fr 1fr;}
+}
+.vitrio-lp__plan{
+  background:#fff; border:1px solid rgba(30,79,207,.12);
+  border-radius:var(--vt-radius); padding:32px; display:flex; flex-direction:column;
+}
+.vitrio-lp__plan--pro{
+  background:linear-gradient(160deg,#12358F,#1E4FCF); color:#fff; border-color:transparent;
+}
+.vitrio-lp__plan h3{font-size:22px; margin-bottom:6px;}
+.vitrio-lp__plan-price{font-size:15px; color:var(--vt-ink-soft); margin-bottom:22px;}
+.vitrio-lp__plan--pro .vitrio-lp__plan-price{color:var(--vt-frost);}
+.vitrio-lp__plan ul{display:grid; gap:11px;}
+.vitrio-lp__plan li{position:relative; padding-left:28px; font-size:15px;}
+.vitrio-lp__plan li::before{
+  content:"✓"; position:absolute; left:0; top:-1px;
+  font-weight:800; color:var(--vt-deep);
+}
+.vitrio-lp__plan--pro li::before{color:var(--vt-crystal);}
+.vitrio-lp__plan-note{
+  margin-top:auto; padding-top:22px; font-size:13.5px; color:var(--vt-ink-mute);
+}
+.vitrio-lp__plan--pro .vitrio-lp__plan-note{color:rgba(255,255,255,.66);}
+
+/* ---- languages ----------------------------------------------------- */
+.vitrio-lp__langs{display:flex; flex-wrap:wrap; gap:10px; margin-top:32px;}
+.vitrio-lp__lang{
+  font-size:14.5px; font-weight:600; color:var(--vt-midnight);
+  background:#fff; border:1px solid rgba(30,79,207,.14);
+  border-radius:999px; padding:9px 16px;
+}
+
+/* ---- honesty / footer ---------------------------------------------- */
+.vitrio-lp__notes{
+  margin-top:44px; background:var(--vt-ice);
+  border-left:4px solid var(--vt-azure); border-radius:0 var(--vt-radius-sm) var(--vt-radius-sm) 0;
+  padding:26px 28px;
+}
+.vitrio-lp__notes h3{font-size:17px; margin-bottom:14px;}
+.vitrio-lp__notes ul{display:grid; gap:11px;}
+.vitrio-lp__notes li{font-size:15px; color:var(--vt-ink-soft); padding-left:20px; position:relative;}
+.vitrio-lp__notes li::before{content:"—"; position:absolute; left:0; color:var(--vt-ink-mute);}
+.vitrio-lp__foot{
+  padding:44px 0; background:var(--vt-midnight); color:var(--vt-sky);
+  font-size:14.5px; text-align:center;
+}
+.vitrio-lp__foot strong{color:#fff;}
+.vitrio-lp__foot a{color:var(--vt-crystal); text-decoration:none;}
+.vitrio-lp__foot a:hover{text-decoration:underline;}
+.vitrio-lp__foot-support{margin-top:14px; color:var(--vt-sky);}
+
+/* ---- narrow screens ------------------------------------------------ */
+@media (max-width:640px){
+  .vitrio-lp{font-size:16px;}
+  .vitrio-lp__section{padding:64px 0;}
+  .vitrio-lp__hero{padding:72px 0 76px;}
+  .vitrio-lp__wrap{padding:0 18px;}
+  .vitrio-lp__card,.vitrio-lp__plan,.vitrio-lp__step{padding:22px;}
+}
+</style>
+
+<!-- ================= HERO ================= -->
+<header class="vitrio-lp__hero">
+  <div class="vitrio-lp__wrap">
+    <div class="vitrio-lp__hero-inner">
+      <div class="vitrio-lp__logo">
+        <span class="vitrio-lp__logo-mark">V</span>
+        <span>Vitrio</span>
+      </div>
+      <h1>Your <em>collection,</em> catalogued.</h1>
+      <p>
+        Vinyl, LEGO, whisky, retro games, board games — and anything else you
+        collect. Scan a barcode, and the record fills itself in. Insurance-ready
+        in one tap, and never locked in.
+      </p>
+      <div class="vitrio-lp__hero-meta">
+        <span class="vitrio-lp__pill">iPhone · iOS 18 or later</span>
+        <span class="vitrio-lp__pill">No account, ever</span>
+        <span class="vitrio-lp__pill">12 languages</span>
+        <span class="vitrio-lp__pill">Free tier, no ads</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= WHAT IT CATALOGS ================= -->
+<section class="vitrio-lp__section">
+  <div class="vitrio-lp__wrap">
+    <span class="vitrio-lp__eyebrow">What it catalogues</span>
+    <h2>Five catalogues built in. Then whatever you invent.</h2>
+    <p class="vitrio-lp__lede">
+      Each catalogue knows its own vocabulary: a record has an artist and a
+      Goldmine grade, a LEGO set has a theme and a box, a bottle has a
+      distillery and a fill level. You are never typing into a generic form.
+    </p>
+
+    <div class="vitrio-lp__cats">
+      <div class="vitrio-lp__cat">
+        <span class="vitrio-lp__cat-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/>
+          </svg>
+        </span>
+        <h4>Vinyl records</h4>
+        <p>Artist, year, pressing, edition. Cover art fetched automatically.</p>
+      </div>
+      <div class="vitrio-lp__cat">
+        <span class="vitrio-lp__cat-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="8" width="18" height="12" rx="2"/>
+            <path d="M8 8V5.5M16 8V5.5"/>
+          </svg>
+        </span>
+        <h4>LEGO sets</h4>
+        <p>Set number, theme, part count. Sealed, complete, or parts only.</p>
+      </div>
+      <div class="vitrio-lp__cat">
+        <span class="vitrio-lp__cat-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 3h4v4l3 4v10H7V11l3-4V3z"/>
+          </svg>
+        </span>
+        <h4>Whisky</h4>
+        <p>Distillery, bottling, and fill level from neck to mid shoulder.</p>
+      </div>
+      <div class="vitrio-lp__cat">
+        <span class="vitrio-lp__cat-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="10" rx="5"/>
+            <path d="M7 12h3M8.5 10.5v3M15.5 11.5h.01M17.5 13.5h.01"/>
+          </svg>
+        </span>
+        <h4>Retro games</h4>
+        <p>Platform, and how the market actually grades: sealed, CIB, loose.</p>
+      </div>
+      <div class="vitrio-lp__cat">
+        <span class="vitrio-lp__cat-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="4" width="16" height="16" rx="3"/>
+            <path d="M9 9h.01M15 15h.01M9 15h.01M15 9h.01"/>
+          </svg>
+        </span>
+        <h4>Board games</h4>
+        <p>Designer and publisher, with completeness rather than condition.</p>
+      </div>
+      <div class="vitrio-lp__cat vitrio-lp__cat--own">
+        <span class="vitrio-lp__cat-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </span>
+        <h4>Your own category</h4>
+        <p>
+          Coins, stamps, watches, comics. Give it a name, an icon, and a label
+          for its second field — it then behaves exactly like the built-in five.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ADDING AN ITEM ================= -->
+<section class="vitrio-lp__section vitrio-lp__section--tint">
+  <div class="vitrio-lp__wrap">
+    <span class="vitrio-lp__eyebrow">Adding an item</span>
+    <h2>Point the camera. Vitrio does the typing.</h2>
+    <p class="vitrio-lp__lede">
+      Slow adding is the loudest complaint about every other collection app, so
+      this is the part Vitrio takes most seriously.
+    </p>
+
+    <div class="vitrio-lp__steps">
+      <div class="vitrio-lp__step">
+        <h4>Scan the barcode</h4>
+        <p>
+          Live camera scanning for EAN, UPC, Code 128, QR and PDF417 — the sleeve,
+          the box, the bottle.
+        </p>
+      </div>
+      <div class="vitrio-lp__step">
+        <h4>Fields fill themselves</h4>
+        <p>
+          Title, artist, year and cover art arrive from open catalogues. Only
+          blank fields are filled — anything you typed always wins.
+        </p>
+      </div>
+      <div class="vitrio-lp__step">
+        <h4>Pick the right pressing</h4>
+        <p>
+          One barcode often covers several editions, so the runners-up stay on
+          screen under “Not the right one?” instead of being silently discarded.
+        </p>
+      </div>
+      <div class="vitrio-lp__step">
+        <h4>Save &amp; scan next</h4>
+        <p>
+          Batch mode keeps the scanner open with a running count, so a shelf
+          becomes a catalogue in one sitting.
+        </p>
+      </div>
+    </div>
+
+    <div class="vitrio-lp__table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Catalogue</th>
+            <th>Looked up in</th>
+            <th>Setup</th>
+            <th>How</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vinyl records</td>
+            <td>MusicBrainz + Cover Art Archive</td>
+            <td><span class="vitrio-lp__tag vitrio-lp__tag--free">No key needed</span></td>
+            <td>Barcode, or by album title</td>
+          </tr>
+          <tr>
+            <td>Whisky &amp; drinks</td>
+            <td>Open Food Facts</td>
+            <td><span class="vitrio-lp__tag vitrio-lp__tag--free">No key needed</span></td>
+            <td>Barcode, or by bottling name</td>
+          </tr>
+          <tr>
+            <td>Board games</td>
+            <td>BoardGameGeek</td>
+            <td><span class="vitrio-lp__tag vitrio-lp__tag--free">No key needed</span></td>
+            <td>By name — BGG has no barcode index</td>
+          </tr>
+          <tr>
+            <td>LEGO sets</td>
+            <td>Rebrickable</td>
+            <td><span class="vitrio-lp__tag vitrio-lp__tag--key">Your own free key</span></td>
+            <td>By set number or name</td>
+          </tr>
+          <tr>
+            <td>Retro games</td>
+            <td>—</td>
+            <td><span class="vitrio-lp__tag vitrio-lp__tag--manual">Manual</span></td>
+            <td>No open index exists, so you fill it in</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="vitrio-lp__grid">
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 9v4M12 16.5v.01"/><circle cx="12" cy="12" r="9"/>
+          </svg>
+        </span>
+        <h3>“You already have this”</h3>
+        <p>
+          A duplicate warning before you buy a second copy — the reason people
+          scan in a shop at all. It matches on barcode first (normalising UPC-A
+          against EAN-13, which differ only by a leading zero), then falls back
+          to the title within the same category.
+        </p>
+      </div>
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.8 8.6a6 6 0 0 0-10.5-2.4H8a5 5 0 0 0 0 10h9a4 4 0 0 0 3.8-7.6z"/>
+          </svg>
+        </span>
+        <h3>Search by name</h3>
+        <p>
+          Barcodes go missing, wear out, or were never indexed. When one fails,
+          type the name instead — the form searches whichever catalogue covers
+          that category and offers the matches it finds.
+        </p>
+      </div>
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/>
+          </svg>
+        </span>
+        <h3>Where it lives</h3>
+        <p>
+          Shelf A row 2, loft box 3, the cabinet. Storage location, where you
+          bought it, purchase date, notes and serial number — the details that
+          matter later, when you actually need to find or prove something.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VALUE & INSURANCE ================= -->
+<section class="vitrio-lp__section">
+  <div class="vitrio-lp__wrap">
+    <span class="vitrio-lp__eyebrow">Value &amp; insurance</span>
+    <h2>What it’s worth, and proof that you owned it.</h2>
+    <p class="vitrio-lp__lede">
+      Collections get lost, flooded and stolen. The unglamorous half of a
+      catalogue is the half an insurer will ask for.
+    </p>
+
+    <div class="vitrio-lp__grid">
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 17l5-6 4 3 5-7 4 4"/><path d="M3 21h18"/>
+          </svg>
+        </span>
+        <h3>Value over time, honestly</h3>
+        <p>
+          The chart plots the values <strong>you</strong> have actually recorded.
+          There is no invented market curve and no fake trend line — with one
+          data point, Vitrio says so instead of drawing something decorative.
+        </p>
+        <ul>
+          <li>Estimated value next to what you paid</li>
+          <li>Unrealised gain per item and across the collection</li>
+          <li>Every change kept as a dated point</li>
+        </ul>
+      </div>
+
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/>
+          </svg>
+        </span>
+        <h3>Condition the way your market grades it</h3>
+        <p>
+          Free-text condition means “NM”, “near mint” and “Near-Mint” all coexist
+          and none of them sort. Each catalogue offers its own established scale
+          instead — and still accepts wording of your own.
+        </p>
+        <ul>
+          <li>Goldmine for records: M, NM, VG+, VG, G, P</li>
+          <li>Sealed / CIB / boxed / loose for games</li>
+          <li>Fill levels for bottles, box completeness for LEGO</li>
+          <li>Third-party grades: PSA, BGS, CGC, SGC, WATA, VGA, AGS, CBCS</li>
+        </ul>
+      </div>
+
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/>
+            <path d="M14 3v5h5M9 13h6M9 17h4"/>
+          </svg>
+        </span>
+        <h3>An insurance-ready PDF</h3>
+        <p>
+          A proper A4 document, not a screenshot: every item with its photo,
+          purchase details, identifiers and market value, headed with your name
+          and policy number.
+        </p>
+        <ul>
+          <li>Summary of value, purchase total and unrealised gain</li>
+          <li>Appraisals — value, appraiser and date</li>
+          <li>A “documented N of M complete” score, so you can see which
+              items would fail a claim</li>
+        </ul>
+      </div>
+
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10M15 10v10"/>
+          </svg>
+        </span>
+        <h3>CSV export, free forever</h3>
+        <p>
+          Every field, RFC-4180 clean, opens in Numbers, Excel or Google Sheets —
+          wishlist included. It is free on the free tier and it always will be.
+          A catalogue you cannot get out of is a trap, not a tool.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRIVACY ================= -->
+<section class="vitrio-lp__section vitrio-lp__section--dark">
+  <div class="vitrio-lp__wrap">
+    <span class="vitrio-lp__eyebrow">Private by design</span>
+    <h2>No account. No servers. No feed.</h2>
+    <p class="vitrio-lp__lede">
+      A list of everything valuable you own, and where in your home it is kept,
+      is not data anyone should hand to a start-up. So Vitrio never receives it.
+    </p>
+
+    <div class="vitrio-lp__grid">
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 10V8a6 6 0 0 0-12 0v2"/><rect x="4" y="10" width="16" height="11" rx="2"/>
+          </svg>
+        </span>
+        <h3>Your iCloud is the login</h3>
+        <p>
+          There is no sign-up, no password and no profile. Your collection lives
+          in your own private iCloud database and syncs between your devices —
+          and nowhere else.
+        </p>
+      </div>
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3l18 18"/><path d="M10.6 5.1A9 9 0 0 1 21 12a9 9 0 0 1-1.2 4.5"/>
+            <path d="M6.3 6.3A9 9 0 0 0 3 12a9 9 0 0 0 9 9 9 9 0 0 0 4.3-1.1"/>
+          </svg>
+        </span>
+        <h3>Nothing measured, nothing sold</h3>
+        <p>
+          No analytics, no tracking, no advertising, no third-party SDKs
+          watching what you collect. The catalogue lookups are the only network
+          calls the app makes, and they only ever send a barcode or a title.
+        </p>
+      </div>
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/>
+          </svg>
+        </span>
+        <h3>Sharing without publishing</h3>
+        <p>
+          Share a piece or the whole collection as an image rendered on your
+          device, handed straight to the normal iOS share sheet. Nothing is
+          uploaded, and there is no public profile to be found.
+        </p>
+        <ul>
+          <li>The value is <strong>off by default</strong> — posting a total is
+              a shopping list for burglars</li>
+          <li>You see exactly what will leave the device before it does</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFFLINE + LANGUAGES ================= -->
+<section class="vitrio-lp__section vitrio-lp__section--tint">
+  <div class="vitrio-lp__wrap">
+    <span class="vitrio-lp__eyebrow">Everywhere you actually collect</span>
+    <h2>Basement record shops have no signal.</h2>
+    <p class="vitrio-lp__lede">
+      That is where the good finds are, so “works offline” cannot be an
+      afterthought.
+    </p>
+
+    <div class="vitrio-lp__grid">
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/>
+          </svg>
+        </span>
+        <h3>Scan now, complete later</h3>
+        <p>
+          With no connection, Vitrio saves what it has and finishes the lookup by
+          itself the moment you are back online — filling only the fields still
+          blank, so nothing you typed in the shop is overwritten.
+        </p>
+      </div>
+      <div class="vitrio-lp__card">
+        <span class="vitrio-lp__card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/>
+          </svg>
+        </span>
+        <h3>Your currency, your totals</h3>
+        <p>
+          Items keep the currency you bought them in, and the collection totals
+          in the currency that actually dominates it — not whichever one your
+          phone’s region happens to suggest. Where currencies mix, Vitrio says
+          what it left out rather than adding numbers that don’t belong together.
+        </p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:52px; font-size:21px;">Fully translated into 12 languages</h3>
+    <div class="vitrio-lp__langs">
+      <span class="vitrio-lp__lang">English</span>
+      <span class="vitrio-lp__lang">Deutsch</span>
+      <span class="vitrio-lp__lang">日本語</span>
+      <span class="vitrio-lp__lang">Français</span>
+      <span class="vitrio-lp__lang">Español (España)</span>
+      <span class="vitrio-lp__lang">Español (México)</span>
+      <span class="vitrio-lp__lang">Italiano</span>
+      <span class="vitrio-lp__lang">Português (Brasil)</span>
+      <span class="vitrio-lp__lang">한국어</span>
+      <span class="vitrio-lp__lang">Nederlands</span>
+      <span class="vitrio-lp__lang">Slovenčina</span>
+      <span class="vitrio-lp__lang">Čeština</span>
+    </div>
+    <p class="vitrio-lp__lede" style="margin-top:20px;">
+      Not just the buttons: condition scales, category names and the insurance
+      report are translated too, with real plural rules — so Slovak and Czech
+      say “1 položka” and “5 položiek” correctly. Vitrio follows your device
+      language, and you can override it in the app if you’d rather read another.
+    </p>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="vitrio-lp__section">
+  <div class="vitrio-lp__wrap">
+    <span class="vitrio-lp__eyebrow">Pricing</span>
+    <h2>Free is genuinely usable. Pro lifts the ceiling.</h2>
+    <p class="vitrio-lp__lede">
+      Every feature above is on the free tier. What Pro buys is room and the
+      insurance PDF — not the app working properly.
+    </p>
+
+    <div class="vitrio-lp__plans">
+      <div class="vitrio-lp__plan">
+        <h3>Free</h3>
+        <p class="vitrio-lp__plan-price">No card, no trial countdown</p>
+        <ul>
+          <li>Up to 100 items you own</li>
+          <li>Unlimited wishlist — it never counts</li>
+          <li>Barcode scanning and autofill</li>
+          <li>Duplicate check and title search</li>
+          <li>Value history and insights</li>
+          <li>Condition, grading and appraisals</li>
+          <li>Custom categories</li>
+          <li>Sharing</li>
+          <li>CSV export of everything</li>
+        </ul>
+        <p class="vitrio-lp__plan-note">
+          iCloud sync included. No ads at any tier.
+        </p>
+      </div>
+
+      <div class="vitrio-lp__plan vitrio-lp__plan--pro">
+        <h3>Vitrio Pro</h3>
+        <p class="vitrio-lp__plan-price">
+          €4.99 / month · €34.99 / year · €69.99 once
+        </p>
+        <ul>
+          <li>Everything in Free</li>
+          <li><strong>Unlimited items</strong></li>
+          <li><strong>The insurance-ready PDF report</strong></li>
+          <li>Owner name and policy number on the report</li>
+          <li>Documentation completeness scoring</li>
+        </ul>
+        <p class="vitrio-lp__plan-note">
+          Lifetime is a single purchase, not a subscription. Subscriptions renew
+          until cancelled and can be managed in your Apple account at any time.
+        </p>
+      </div>
+    </div>
+
+    <div class="vitrio-lp__notes">
+      <h3>Things worth being straight about</h3>
+      <ul>
+        <li>
+          <strong>Values are estimates, not appraisals.</strong> They are figures
+          you record and adjust yourself, useful for insurance paperwork and for
+          watching how a collection moves. Vitrio does not pretend to be a
+          valuer, and every screen that shows a number says so.
+        </li>
+        <li>
+          <strong>LEGO lookup needs a free key of your own.</strong> Rebrickable
+          issues it in about a minute at rebrickable.com/api and Vitrio shows you
+          where; the key is stored in your device Keychain, never synced and
+          never included in an export. Rebrickable has no barcode index and no
+          prices, so LEGO is found by set number or name.
+        </li>
+        <li>
+          <strong>Retro game titles are entered by hand.</strong> No open,
+          free-to-use index of them exists, so the form doesn’t offer a search
+          button that could only disappoint.
+        </li>
+        <li>
+          <strong>iCloud sync needs iCloud.</strong> Signed out of iCloud, the
+          app still works — it simply keeps the catalogue on that one device.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="vitrio-lp__foot">
+  <div class="vitrio-lp__wrap">
+    <p>
+      <strong>Vitrio</strong> — catalogue what you collect.
+      iPhone, iOS 18 or later. Your data stays in your own private iCloud, and
+      CSV export is free forever.
+    </p>
+    <p class="vitrio-lp__foot-support">
+      Questions, bug reports or a catalogue that keeps missing your edition?
+      Write to <a href="mailto:email@varadzin.com">email@varadzin.com</a> — a real
+      person reads it. See also the
+      <a href="/privacy-policy-vitrio/">privacy policy</a>.
+    </p>
+  </div>
+</footer>
+</div>

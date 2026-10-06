@@ -1,0 +1,32 @@
+---
+import Head from '../layouts/Head.astro';
+import { landingPages, type LandingPage } from '../data/site';
+
+// App landing pages, migrated from WordPress. Each one is self-contained HTML with its own scoped styles,
+// so it is rendered on a bare page instead of inside the site layout.
+const bodies = import.meta.glob<string>('../content/landing/*.html', { query: '?raw', import: 'default', eager: true });
+
+export function getStaticPaths() {
+  return landingPages.map((page) => ({ params: { landing: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props as { page: LandingPage };
+const body = bodies[`../content/landing/${page.slug}.html`];
+if (body === undefined) {
+  throw new Error(`Missing src/content/landing/${page.slug}.html`);
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head title={page.title} description={page.description} />
+    <style is:global>
+      body { margin: 0; overflow-x: clip; }
+      img { max-width: 100%; height: auto; }
+    </style>
+  </head>
+  <body>
+    <Fragment set:html={body} />
+  </body>
+</html>
