@@ -55,6 +55,19 @@ export const ownApps: App[] = [
       { label: 'App Store', href: 'https://apps.apple.com/sk/app/vitrio-collection-tracker/id6795606078' },
     ],
   },
+  {
+    name: 'Work in Germany',
+    icon: '/images/work-in-germany.png',
+    summary:
+      'Job ads from Germany, Austria and Switzerland, translated into your language. ' +
+      'Pay, housing and how much German the job really needs. Write about yourself in your own words ' +
+      'and the app writes the German Lebenslauf.',
+    chips: ['iPhone', 'No account needed', '4 languages'],
+    links: [
+      { label: 'Website', href: 'https://pracujemvnemecku.sk/appka' },
+      { label: 'App Store', href: 'https://apps.apple.com/app/id6822067608' },
+    ],
+  },
 ];
 
 /** Client projects František contributed to. */
